@@ -1,47 +1,72 @@
-from ABC import abc, abstractmethod
+from abc import ABC, abstractmethod
+
 
 class Creature(ABC):
-    
-    def __init__(self, name_creature: str, type_creature: str):
-        self.name_creature = name_creature
-        self.type_creature = type_creature
+    def __init__(self, creature_name: str, creature_type: str) -> None:
+        self.name = creature_name
+        self.type = creature_type
 
     @abstractmethod
-    def attack(self) -> str
+    def attack(self) -> str:
         pass
 
-    def describe(self) -> str
-        print(f"{self.name_creature} is a {self.type_creature} type Creature")
+    def describe(self) -> str:
+        return f"{self.name} is a {self.type} type Creature"
 
-class Flameling(Creature)
 
-    def __init__(self, name_creature: str, type_creature: str):
-        super.__init__(name_creature, type_creature)
+class Flameling(Creature):
+    def __init__(self) -> None:
+        super().__init__("Flameling", "Fire")
 
-    def attack(self) -> str
-        print(f"{self.name_creature} uses Ember!")
+    def attack(self) -> str:
+        return f"{self.name} uses Ember!"
 
-class Pyrodon(Creature)
 
-    def __init__(self, name_creature: str, type_creature: str):
-        super.__init__(name_creature, type_creature)
+class Pyrodon(Creature):
+    def __init__(self) -> None:
+        super().__init__("Pyrodon", "Fire/Flying")
 
-    def attack(self) -> str
-        print(f"{self.name_creature} uses Flamethrower!")
+    def attack(self) -> str:
+        return f"{self.name} uses Flamethrower!"
 
-class Aquabub(Creature)
 
-    def __init__(self, name_creature: str, type_creature: str):
-         super.__init__(name_creature, type_creature)
+class Aquabub(Creature):
+    def __init__(self) -> None:
+        super().__init__("Aquabub", "Water")
 
-    def attack(self) -> str
-         print(f"{self.name_creature} uses Water Gun!")
+    def attack(self) -> str:
+        return f"{self.name} uses Water Gun!"
 
-class Torragon(Creature)
 
-    def __init__(self, name_creature: str, type_creature: str):
-         super.__init__(name_creature, type_creature)
+class Torragon(Creature):
+    def __init__(self) -> None:
+        super().__init__("Torragon", "Water")
 
-    def attack(self) -> str
-         print(f"{self.name_creature} uses Hydro Pump!")
+    def attack(self) -> str:
+        return f"{self.name} uses Hydro Pump!"
 
+
+class CreatureFactory(ABC):
+    @abstractmethod
+    def create_base(self) -> Creature:
+        pass
+
+    @abstractmethod
+    def create_evolved(self) -> Creature:
+        pass
+
+
+class FlameFactory(CreatureFactory):
+    def create_base(self) -> Creature:
+        return Flameling()
+
+    def create_evolved(self) -> Creature:
+        return Pyrodon()
+
+
+class AquaFactory(CreatureFactory):
+    def create_base(self) -> Creature:
+        return Aquabub()
+
+    def create_evolved(self) -> Creature:
+        return Torragon()
