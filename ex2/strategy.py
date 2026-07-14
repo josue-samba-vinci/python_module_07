@@ -18,10 +18,10 @@ class BattleStrategy(ABC):
 
 
 class NormalStrategy(BattleStrategy):
-    def is_valid(self) -> bool:
+    def is_valid(self, creature: Creature) -> bool:
         return True
 
-    def act(self, creature: Creature) -> str:
+    def act(self, creature: Creature) -> None:
         print(creature.attack())
 
 
