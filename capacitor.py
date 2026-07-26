@@ -1,7 +1,7 @@
-from ex1 import HealingCreatureFactory, TransformCreatureFactory
+import ex1
 
 
-def test_healing_creature(healing_factory: HealingCreatureFactory) -> None:
+def test_healing_creature(healing_factory: ex1.HealingCreatureFactory) -> None:
     healing_base_creature = healing_factory.create_base()
     healing_evolved_creature = healing_factory.create_evolved()
     print("Testing Creature with healing capability")
@@ -17,7 +17,7 @@ def test_healing_creature(healing_factory: HealingCreatureFactory) -> None:
 
 
 def test_transform_creature(
-        transform_factory: TransformCreatureFactory) -> None:
+        transform_factory: ex1.TransformCreatureFactory) -> None:
     transforming_base_creature = transform_factory.create_base()
     transforming_evolved_creature = transform_factory.create_evolved()
     print("Testing Creature with transform capability")
@@ -36,8 +36,8 @@ def test_transform_creature(
 
 
 def main() -> None:
-    test_healing_creature(HealingCreatureFactory())
-    test_transform_creature(TransformCreatureFactory())
+    test_healing_creature(ex1.HealingCreatureFactory())
+    test_transform_creature(ex1.TransformCreatureFactory())
 
 
 if __name__ == "__main__":

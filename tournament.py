@@ -1,11 +1,10 @@
-from ex0 import CreatureFactory, FlameFactory, AquaFactory
-from ex1 import HealingCreatureFactory, TransformCreatureFactory
-from ex2 import BattleStrategy, InvalidStrategyError
-from ex2 import NormalStrategy, AggressiveStrategy, DefensiveStrategy
+import ex0
+import ex1
+import ex2
 
 
 def battle(
-          opponents: list[tuple[CreatureFactory, BattleStrategy]]
+          opponents: list[tuple[ex0.CreatureFactory, ex2.BattleStrategy]]
           ) -> None:
     print("*** Tournament ***")
     print(f"{len(opponents)} opponents involved")
@@ -17,6 +16,7 @@ def battle(
                 factory_2, strategy_2 = opponents[j]
                 creature_1 = factory_1.create_base()
                 creature_2 = factory_2.create_base()
+                print()
                 print("* Battle *")
                 print(creature_1.describe())
                 print(" vs.")
@@ -24,7 +24,7 @@ def battle(
                 print(" now fight!")
                 strategy_1.act(creature_1)
                 strategy_2.act(creature_2)
-    except InvalidStrategyError as e:
+    except ex2.InvalidStrategyError as e:
         print(f"Battle error, aborting tournament: {e}")
 
 
@@ -32,21 +32,23 @@ def main() -> None:
     print("Tournament 0 (basic)")
     print(" [ (Flameling+Normal), (Healing+Defensive) ]")
     battle([
-        (FlameFactory(), NormalStrategy()),
-        (HealingCreatureFactory(), DefensiveStrategy())
+        (ex0.FlameFactory(), ex2.NormalStrategy()),
+        (ex1.HealingCreatureFactory(), ex2.DefensiveStrategy())
         ])
+    print()
     print("Tournament 1 (error)")
     print(" [ (Flameling+Aggressive), (Healing+Defensive) ]")
     battle([
-        (FlameFactory(), AggressiveStrategy()),
-        (HealingCreatureFactory(), DefensiveStrategy())
+        (ex0.FlameFactory(), ex2.AggressiveStrategy()),
+        (ex1.HealingCreatureFactory(), ex2.DefensiveStrategy())
     ])
+    print()
     print("Tournament 2 (multiple)")
     print(" [ (Aquabub+Normal), (Healing+Defensive), (Transform+Aggressive) ]")
     battle([
-        (AquaFactory(), NormalStrategy()),
-        (HealingCreatureFactory(), DefensiveStrategy()),
-        (TransformCreatureFactory(), AggressiveStrategy())
+        (ex0.AquaFactory(), ex2.NormalStrategy()),
+        (ex1.HealingCreatureFactory(), ex2.DefensiveStrategy()),
+        (ex1.TransformCreatureFactory(), ex2.AggressiveStrategy())
     ])
 
 

@@ -5,7 +5,7 @@ from ex0.creature import CreatureFactory, Creature
 class HealCapability(ABC):
     @abstractmethod
     def heal(self) -> str:
-        pass
+        ...
 
 
 class TransformCapability(ABC):
@@ -14,19 +14,19 @@ class TransformCapability(ABC):
 
     @abstractmethod
     def transform(self) -> str:
-        pass
+        ...
 
     @abstractmethod
     def revert(self) -> str:
-        pass
+        ...
 
 
 class HealingCreature(Creature, HealCapability, ABC):
-    pass
+    ...
 
 
 class TransformingCreature(Creature, TransformCapability, ABC):
-    pass
+    ...
 
 
 class Sproutling(HealingCreature):

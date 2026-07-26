@@ -1,7 +1,7 @@
-from ex0 import CreatureFactory, FlameFactory, AquaFactory
+import ex0
 
 
-def test_factory(factory: CreatureFactory) -> None:
+def test_factory(factory: ex0.CreatureFactory) -> None:
     base = factory.create_base()
     evolved = factory.create_evolved()
     print("Testing factory")
@@ -12,7 +12,9 @@ def test_factory(factory: CreatureFactory) -> None:
     print("")
 
 
-def test_battle(factory1: CreatureFactory, factory2: CreatureFactory) -> None:
+def test_battle(
+        factory1: ex0.CreatureFactory, factory2: ex0.CreatureFactory
+        ) -> None:
     creature1 = factory1.create_base()
     creature2 = factory2.create_base()
     print("Testing battle")
@@ -25,9 +27,9 @@ def test_battle(factory1: CreatureFactory, factory2: CreatureFactory) -> None:
 
 
 def main() -> None:
-    test_factory(FlameFactory())
-    test_factory(AquaFactory())
-    test_battle(FlameFactory(), AquaFactory())
+    test_factory(ex0.FlameFactory())
+    test_factory(ex0.AquaFactory())
+    test_battle(ex0.FlameFactory(), ex0.AquaFactory())
 
 
 if __name__ == "__main__":
